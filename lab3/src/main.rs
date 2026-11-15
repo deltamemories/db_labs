@@ -18,8 +18,10 @@ struct GeneratedBook {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
+    let mut pwd = String::new();
+    std::io::stdin().read_line(&mut pwd)?;
     let mut conn = Client::connect(
-        "host=localhost user=postgres password=root dbname=postgres",
+        &format!("host=localhost user=postgres password={pwd} dbname=postgres"),
         NoTls,
     )?;
 
